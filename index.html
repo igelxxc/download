@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <!-- Dashboard View (Account File Management & Re-upload) -->
+        <!-- Dashboard View -->
         <div id="dashboardView" class="hidden space-y-6">
             <div class="flex justify-between items-center border-b border-slate-800 pb-4">
                 <div>
@@ -118,7 +118,6 @@
         let currentUser = localStorage.getItem('shadow_user') ? JSON.parse(localStorage.getItem('shadow_user')) : null;
         let activeReplaceFileId = null;
 
-        // Mock database stored in localStorage
         let dbFiles = JSON.parse(localStorage.getItem('shadow_files')) || [
             { id: 'danilhex_siken', name: 'danilhex_siken.dll', date: '2026-03-01 12:00', url: window.location.origin + '/download/danilhex_siken' }
         ];
@@ -207,12 +206,11 @@
             let progress = 0;
             const interval = setInterval(() => {
                 progress += 20;
-                document.getElementById('progressBar.style.width') // safe query
                 document.getElementById('progressBar').style.width = progress + '%';
                 document.getElementById('progressPct').innerText = progress + '%';
                 if (progress >= 100) {
                     clearInterval(interval);
-                    const fileId = Math.random().toString(36.substring(2, 9));
+                    const fileId = Math.random().toString(36).substring(2, 9);
                     const fileObj = {
                         id: fileId,
                         name: file.name,
